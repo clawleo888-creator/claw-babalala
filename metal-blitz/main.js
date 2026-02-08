@@ -158,8 +158,7 @@ class MetalBlitzScene extends Phaser.Scene {
   }
 
   bindInput() {
-    const add = this.input.keyboard.addKeys;
-    this.keys = add({
+    this.keys = this.input.keyboard.addKeys({
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
       up: Phaser.Input.Keyboard.KeyCodes.W,
