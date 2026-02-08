@@ -134,29 +134,17 @@ class MetalBlitzScene extends Phaser.Scene {
 
   createWorld() {
     this.physics.world.setBounds(0, 0, 3200, GAME_HEIGHT);
-    const map = this.make.tilemap({ tileWidth: 64, tileHeight: 64, width: 50, height: 9 });
-    const tileset = map.addTilesetImage('dummy', null, 64, 64);
-    const layerData = [];
-    for (let y = 0; y < 9; y++) {
-      const row = [];
-      for (let x = 0; x < 50; x++) {
-        if (y >= 6) row.push(1);
-        else if (y === 4 && Phaser.Math.Between(0, 7) === 0) row.push(1);
-        else row.push(-1);
-      }
-      layerData.push(row);
-    }
-    const layer = map.createBlankLayer('terrain', tileset);
-    layer.putTilesAt(layerData, 0, 0);
-    layer.setFill(0);
-
     const platforms = this.physics.add.staticGroup();
-    layer.forEachTile((tile) => {
-      if (tile.index !== -1) {
-        const block = this.add.rectangle(tile.pixelX + 32, tile.pixelY + 32, 64, 64, 0x1d3557);
-        this.physics.add.existing(block, true);
-        platforms.add(block);
-      }
+    for (let i = 0; i < 80; i++) {
+      const block = this.add.rectangle(i * 40, GAME_HEIGHT - 40, 40, 40, 0x1d3557).setOrigin(0, 0);
+      this.physics.add.existing(block, true);
+      platforms.add(block);
+    }
+    // floating ledges
+    [400, 900, 1500, 2100].forEach((x) => {
+      const ledge = this.add.rectangle(x, GAME_HEIGHT - 180, 120, 20, 0x274060).setOrigin(0, 0);
+      this.physics.add.existing(ledge, true);
+      platforms.add(ledge);
     });
     this.platforms = platforms;
   }
