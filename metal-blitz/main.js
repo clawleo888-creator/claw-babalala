@@ -129,7 +129,7 @@ class MetalBlitzScene extends Phaser.Scene {
     bg.fillGradientStyle(0x0b2b40, 0x0b2b40, 0x040d12, 0x040d12, 1);
     bg.fillRect(0, 0, 5000, GAME_HEIGHT);
     this.bg = bg;
-    this.add.tileSprite(0, GAME_HEIGHT - 80, 5000, 80, null).setOrigin(0, 0).setFillStyle(0x13251e, 1);
+    const ground = this.add.rectangle(0, GAME_HEIGHT - 80, 5000, 80, 0x13251e).setOrigin(0, 0);
   }
 
   createWorld() {
