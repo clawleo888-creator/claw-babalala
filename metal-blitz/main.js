@@ -379,7 +379,7 @@ const config = {
   width: GAME_WIDTH,
   height: GAME_HEIGHT,
   backgroundColor: '#02060b',
-  parent: 'game',
+  parent: 'game-root',
   scene: [BootScene, MetalBlitzScene],
   physics: {
     default: 'arcade',
